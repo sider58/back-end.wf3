@@ -1,0 +1,48 @@
+<?php if (empty($conducteurs)):?>
+    <p class="lead mt-3">Aucun conducteur pour le moment.</p>
+<?php else: ?>
+    <table class="table table-striped my-5">
+        <thead>
+            <tr>
+                <th scope="col">id_conducteur</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Nom</th>
+                <th scope="col">modification</th>
+                <th scope="col">suppression</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($conducteurs as $conducteur): ?>
+                <tr>
+                    <th scope="row"><?=$conducteur['id_conducteur']?></th>
+                    <td><?=$conducteur['prenom']?></td>
+                    <td><?=$conducteur['nom']?></td>
+                    <td><a class="btn btn-primary" href="/conducteur/edit?id_conducteur=<?=$conducteur['id_conducteur']?>"><i class="fas fa-edit"></i></a></td>
+                    <td><a class="btn btn-danger" href="/conducteur/delete?id_conducteur=<?=$conducteur['id_conducteur']?>"><i class="fas fa-trash"></i></a></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>
+
+<!-- Messages d'erreurs du formulaire -->
+<?php if (isset($errors)): ?>
+    <?php foreach ($errors as $error): ?>
+        <p class="alert alert-danger mt-3"><?=$error?></p>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<!-- formulaire d'ajout de conducteur -->
+<form action="/conducteur" method="post">
+    <fieldset>
+        <div class="mb-3">
+            <label class="form-label" for="prenom">Prénom</label>
+            <input class="form-control" type="text" id="prenom" name="prenom" value="<?=$_POST['prenom']??''?>" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="nom">Nom</label>
+            <input class="form-control" type="text" id="nom" name="nom" value="<?=$_POST['nom']??''?>" required>
+        </div>
+    </fieldset>
+    <input type="submit" value="Ajouter ce conducteur" class="btn btn-primary mb-3">
+</form>

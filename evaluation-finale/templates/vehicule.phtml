@@ -1,0 +1,60 @@
+<?php if (empty($vehicules)):?>
+    <p class="lead mt-3">Aucun véhicule pour le moment.</p>
+<?php else: ?>
+    <table class="table table-striped my-5">
+        <thead>
+            <tr>
+                <th scope="col">id_vehicule</th>
+                <th scope="col">marque</th>
+                <th scope="col">modele</th>
+                <th scope="col">couleur</th>
+                <th scope="col">immatriculation</th>
+                <th scope="col">modifier</th>
+                <th scope="col">supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($vehicules as $vehicule): ?>
+                <tr>
+                    <th scope="row"><?=$vehicule['id_vehicule']?></th>
+                    <td><?=$vehicule['marque']?></td>
+                    <td><?=$vehicule['modele']?></td>
+                    <td><?=$vehicule['couleur']?></td>
+                    <td><?=$vehicule['immatriculation']?></td>
+                    <td><a class="btn btn-primary" href="/vehicule/edit?id_vehicule=<?=$vehicule['id_vehicule']?>"><i class="fas fa-edit"></i></a></td>
+                    <td><a class="btn btn-danger" href="/vehicule/delete?id_vehicule=<?=$vehicule['id_vehicule']?>"><i class="fas fa-trash"></i></a></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>
+
+<!-- Messages d'erreurs du formulaire -->
+<?php if (isset($errors)): ?>
+    <?php foreach ($errors as $error): ?>
+        <p class="alert alert-danger mt-3"><?=$error?></p>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<!-- formulaire d'ajout de vehicule -->
+<form action="/vehicule" method="post">
+    <fieldset>
+        <div class="mb-3">
+            <label class="form-label" for="marque">Marque</label>
+            <input class="form-control" type="text" id="marque" name="marque" value="<?=$_POST['marque']??''?>" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="modele">Modèle</label>
+            <input class="form-control" type="text" id="modele" name="modele" value="<?=$_POST['modele']??''?>" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="couleur">Couleur</label>
+            <input class="form-control" type="text" id="couleur" name="couleur" value="<?=$_POST['couleur']??''?>" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="immatriculation">Immatriculation</label>
+            <input class="form-control" type="text" id="immatriculation" name="immatriculation" value="<?=$_POST['immatriculation']??''?>" required>
+        </div>
+    </fieldset>
+    <input type="submit" value="Ajouter ce vehicule" class="btn btn-primary mb-3">
+</form>

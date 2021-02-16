@@ -1,0 +1,179 @@
+<hr class="my-5">
+<div>
+    <p class="lead">Afficher le nombre de conducteurs</p>
+    <p><?=$countConducteurs?></p>
+</div>
+<hr class="my-5">
+<div>
+    <p class="lead">Afficher le nombre de véhicules</p>
+    <p><?=$countVehicules?></p>
+</div>
+<hr class="my-5">
+<div>
+    <p class="lead">Afficher le nombre d'associations</p>
+    <p><?=$countAssociations?></p>
+</div>
+<hr class="my-5">
+<div>
+    <p class="lead">Afficher les véhicules n'ayant pas de conducteurs</p>
+
+    <?php if (empty($vehiculesSansConducteur)):?>
+        <p class="lead mt-3">Aucun véhicule sans conducteurs.</p>
+    <?php else: ?>
+        <table class="table table-striped my-5">
+            <thead>
+            <tr>
+                <th scope="col">id_vehicule</th>
+                <th scope="col">marque</th>
+                <th scope="col">modele</th>
+                <th scope="col">couleur</th>
+                <th scope="col">immatriculation</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($vehiculesSansConducteur as $vehicule): ?>
+                <tr>
+                    <th scope="row"><?=$vehicule['id_vehicule']?></th>
+                    <td><?=$vehicule['marque']?></td>
+                    <td><?=$vehicule['modele']?></td>
+                    <td><?=$vehicule['couleur']?></td>
+                    <td><?=$vehicule['immatriculation']?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+</div>
+<hr class="my-5">
+<div>
+    <p class="lead">Afficher les conducteurs n'ayant pas de véhicule</p>
+
+    <?php if (empty($conducteursSansVehicule)):?>
+        <p class="lead mt-3">Aucun conducteur sans véhicules.</p>
+    <?php else: ?>
+        <table class="table table-striped my-5">
+            <thead>
+            <tr>
+                <th scope="col">id_conducteur</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Nom</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($conducteursSansVehicule as $conducteur): ?>
+                <tr>
+                    <th scope="row"><?=$conducteur['id_conducteur']?></th>
+                    <td><?=$conducteur['prenom']?></td>
+                    <td><?=$conducteur['nom']?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+</div>
+<hr class="my-5">
+<div>
+    <p class="lead">Afficher les véhicules conduits par Philippe Pandre</p>
+
+    <?php if (empty($vehiculesDePhilippePandre)):?>
+        <p class="lead mt-3">Aucun véhicule conduit par Philippe Pandre</p>
+    <?php else: ?>
+        <table class="table table-striped my-5">
+            <thead>
+            <tr>
+                <th scope="col">id_vehicule</th>
+                <th scope="col">marque</th>
+                <th scope="col">modele</th>
+                <th scope="col">couleur</th>
+                <th scope="col">immatriculation</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($vehiculesDePhilippePandre as $vehicule): ?>
+                <tr>
+                    <th scope="row"><?=$vehicule['id_vehicule']?></th>
+                    <td><?=$vehicule['marque']?></td>
+                    <td><?=$vehicule['modele']?></td>
+                    <td><?=$vehicule['couleur']?></td>
+                    <td><?=$vehicule['immatriculation']?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+</div>
+<hr class="my-5">
+<div>
+    <p class="lead">Afficher tous les conducteurs (même ceux qui n'ont pas de correspondance) ainsi que les véhicules</p>
+
+    <?php if (empty($conducteursEtLeursVehicules)):?>
+        <p class="lead mt-3">Aucun résultat.</p>
+    <?php else: ?>
+        <table class="table table-striped my-5">
+            <thead>
+            <tr>
+                <th scope="col">Modèle</th>
+                <th scope="col">Prénom</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($conducteursEtLeursVehicules as $conducteur): ?>
+                <tr>
+                    <td><?=$conducteur['modele']??'NULL'?></td>
+                    <td><?=$conducteur['prenom']?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+</div>
+<hr class="my-5">
+<div>
+    <p class="lead">Afficher les conducteurs et tous les véhicules (même ceux qui n'ont pas de correspondance) ainsi que les véhicules</p>
+
+    <?php if (empty($conducteursEtTousLesVehicules)):?>
+        <p class="lead mt-3">Aucun résultat.</p>
+    <?php else: ?>
+        <table class="table table-striped my-5">
+            <thead>
+            <tr>
+                <th scope="col">Modèle</th>
+                <th scope="col">Prénom</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($conducteursEtTousLesVehicules as $conducteur): ?>
+                <tr>
+                    <td><?=$conducteur['modele']?></td>
+                    <td><?=$conducteur['prenom']??'NULL'?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+</div>
+<hr class="my-5">
+<div>
+    <p class="lead">Afficher tous les conducteurs et tous les véhicules (peu importe les correspondances)</p>
+
+    <?php if (empty($everything)):?>
+        <p class="lead mt-3">Aucun résultat.</p>
+    <?php else: ?>
+        <table class="table table-striped my-5">
+            <thead>
+            <tr>
+                <th scope="col">Modèle</th>
+                <th scope="col">Prénom</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($everything as $conducteur): ?>
+                <tr>
+                    <td><?=$conducteur['modele']??'NULL'?></td>
+                    <td><?=$conducteur['prenom']??'NULL'?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+</div>

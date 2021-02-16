@@ -1,0 +1,60 @@
+<?php if (empty($associations)):?>
+    <p class="lead mt-3">Aucune association pour le moment.</p>
+<?php else: ?>
+    <table class="table table-striped my-5">
+        <thead>
+            <tr>
+                <th scope="col">id_association</th>
+                <th scope="col">conducteur</th>
+                <th scope="col">vehicule</th>
+                <th scope="col">modification</th>
+                <th scope="col">suppression</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($associations as $association): ?>
+                <tr>
+                    <th scope="row"><?=$association['id_association']?></th>
+                    <td><?=$association['prenom']?> <?=$association['nom']?> <br> <?=$association['id_conducteur']?></td>
+                    <td><?=$association['marque']?> <?=$association['marque']?> <br> <?=$association['id_vehicule']?></td>
+                    <td><a class="btn btn-primary" href="/association/edit?id_association=<?=$association['id_association']?>"><i class="fas fa-edit"></i></a></td>
+                    <td><a class="btn btn-danger" href="/association/delete?id_association=<?=$association['id_association']?>"><i class="fas fa-trash"></i></a></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php endif; ?>
+
+<!-- Messages d'erreurs du formulaire -->
+<?php if (isset($errors)): ?>
+    <?php foreach ($errors as $error): ?>
+        <p class="alert alert-danger mt-3"><?=$error?></p>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<!-- formulaire d'ajout de association -->
+<form action="/association" method="post">
+    <fieldset>
+        <div class="mb-3">
+            <label class="form-label" for="id_conducteur">Conducteur</label>
+            <select class="form-control" id="id_conducteur" name="id_conducteur" required>
+                <option>Choisir le conducteur</option>
+                <?php foreach ($conducteurs as $conducteur): ?>
+                <?php $selected = $_POST['id_conducteur'] == $conducteur['id_conducteur'] ? 'selected' : ''; ?>
+                    <option <?=$selected?> value="<?=$conducteur['id_conducteur']?>"><?=$conducteur['prenom']?> <?=$conducteur['prenom']?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="id_vehicule">Nom</label>
+            <select class="form-control" id="id_vehicule" name="id_vehicule" required>
+                <option>Choisir le vehicule</option>
+                <?php foreach ($vehicules as $vehicule): ?>
+                    <?php $selected = $_POST['id_vehicule'] == $vehicule['id_vehicule'] ? 'selected' : ''; ?>
+                    <option <?=$selected?> value="<?=$vehicule['id_vehicule']?>"><?=$vehicule['marque']?> <?=$vehicule['modele']?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </fieldset>
+    <input type="submit" value="Ajouter cette association" class="btn btn-primary mb-3">
+</form>

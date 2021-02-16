@@ -1,0 +1,21 @@
+<!-- Messages d'erreurs du formulaire -->
+<?php if (isset($errors)): ?>
+    <?php foreach ($errors as $error): ?>
+        <p class="alert alert-danger mt-3"><?=$error?></p>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<!-- formulaire d'ajout de conducteur -->
+<form action="/conducteur/edit?id_conducteur=<?=$_GET['id_conducteur']?>" method="post">
+    <fieldset>
+        <div class="mb-3">
+            <label class="form-label" for="prenom">Prénom</label>
+            <input class="form-control" type="text" id="prenom" name="prenom" value="<?=$_POST['prenom']??$conducteur['prenom']?>" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="nom">Nom</label>
+            <input class="form-control" type="text" id="nom" name="nom" value="<?=$_POST['nom']??$conducteur['nom']?>" required>
+        </div>
+    </fieldset>
+    <input type="submit" value="Modifier ce conducteur" class="btn btn-primary mb-3">
+</form>

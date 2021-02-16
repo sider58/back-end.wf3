@@ -1,0 +1,29 @@
+<!-- Messages d'erreurs du formulaire -->
+<?php if (isset($errors)): ?>
+    <?php foreach ($errors as $error): ?>
+        <p class="alert alert-danger mt-3"><?=$error?></p>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<!-- formulaire d'ajout de vehicule -->
+<form action="/vehicule/edit?id_vehicule=<?=$_GET['id_vehicule']?>" method="post">
+    <fieldset>
+        <div class="mb-3">
+            <label class="form-label" for="marque">Marque</label>
+            <input class="form-control" type="text" id="marque" name="marque" value="<?=$_POST['marque']??$vehicule['marque']?>" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="modele">Modèle</label>
+            <input class="form-control" type="text" id="modele" name="modele" value="<?=$_POST['modele']??$vehicule['modele']?>" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="couleur">Couleur</label>
+            <input class="form-control" type="text" id="couleur" name="couleur" value="<?=$_POST['couleur']??$vehicule['couleur']?>" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="immatriculation">Immatriculation</label>
+            <input class="form-control" type="text" id="immatriculation" name="immatriculation" value="<?=$_POST['immatriculation']??$vehicule['immatriculation']?>" required>
+        </div>
+    </fieldset>
+    <input type="submit" value="Modifier ce vehicule" class="btn btn-primary mb-3">
+</form>
