@@ -1,0 +1,27 @@
+<section class="row">
+    <?php foreach ($products as $product): ?>
+        <article class="col-md-3">
+            <div class="card mb-4 mx-1">
+                <img class="card-img-top" src="images/<?=htmlspecialchars($product['picture']);?>" alt="">
+                <div class="card-body">
+                    <h2 class="card-title"><?=htmlspecialchars($product['name']);?></h2>
+                    <span class="badge badge-secondary"><?=htmlspecialchars($product['label']);?></span>
+                    
+                    <!-- Prix du produit -->
+                    <p><?=format_price(htmlspecialchars($product['price']));?></p>
+
+                    <?php if ($product['stock'] <= 5): ?>
+                        <p class="card-text">Il ne reste plus que <?=htmlspecialchars($product['stock']);?> exemplaire(s) !</p>
+                    <?php endif; ?>
+                    <div class="mt-2">
+                        <a href="product.php?id=<?=intval($product['product_id']);?>" class="btn btn-primary">Voir le produit</a>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    Proposé par <span><?=htmlspecialchars($product['shop_name']);?></span>
+                </div>
+            </div>
+        </article>
+    <?php endforeach; ?>
+</section>
+            

@@ -1,0 +1,48 @@
+<article>
+    <img class="card-img-top" src="images/<?=$product['picture'];?>" alt="">
+    <div class="card-body">
+        <span class="badge badge-secondary"><?=$product['label'];?></span>
+
+        <!-- Prix du produit -->
+        <p><?=format_price($product['price']);?></p>
+
+        <?php if ($product['stock'] <= 5): ?>
+            <p class="card-text">Il ne reste plus que <?=$product['stock'];?> exemplaire(s) !</p>
+        <?php endif; ?>
+        <p><?=nl2br($product['description']);?></p>
+    </div>
+    <div class="card-footer text-muted">
+        Proposé par <span><?=$product['shop_name'];?></span>
+    </div>
+</article>
+
+<!-- Formulaire de commentaire --> 
+<?php if (isAuthenticated()): ?>
+    <form action="add_comment.php" method="POST">
+        <input type="hidden" name="product-id" value="<?=$product['product_id'];?>">
+        <fieldset>
+            <legend>Donnez votre avis !</legend>
+            <div>
+                <label for="content">Votre commentaire</label>
+                <textarea id="content" name="content"></textarea>
+            </div>
+        </fieldset>
+        <input type="submit" value="Envoyer">        
+    </form>
+<?php else: ?>
+    <p><a href="login.php">Connectez-vous</a> pour donner votre avis !</p>
+<?php endif; ?>  
+
+<!-- Liste des commentaires classés par ordre antéchronologique -->
+<?php if (empty($comments)): ?>
+    <p>Soyez le premier à donner votre avis !</p>
+<?php else: ?>
+    <ul>
+        <?php foreach ($comments as $comment): ?>
+            <li>
+                <small>Ajouté par <?=htmlspecialchars($comment['firstname']);?> <?=htmlspecialchars($comment['lastname']);?> le <?=format_date($comment['createdAt']);?></small>
+                <p><?=nl2br(htmlspecialchars($comment['content']));?></p>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>

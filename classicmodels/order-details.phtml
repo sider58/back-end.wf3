@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bon de commande n°<?=$orderNumber;?></title>
+    <link rel="stylesheet" href="css/orders.css">
+</head>
+<body>
+    <header>
+        <h1>Bon de commande n°<?=$orderNumber;?></h1>
+        <a href="index.php">Retour à la liste des commandes</a>
+    </header>
+    <main>
+       <aside class="order-form-customer">
+            <h2><?=$customer['customerName'];?></h2>
+            <h3><?=$customer['contactFirstName'];?> <?=$customer['contactLastName'];?></h3>
+            <p><?=$customer['addressLine1'];?></p>
+            <p><?=$customer['addressLine2'];?></p>
+            <p><?=$customer['postalCode'];?> <?=$customer['city'];?></p>
+            <p><?=$customer['country'];?></p>
+            <p><?=$customer['phone'];?></p>
+        </aside>
+
+        <table class="standard-table">
+            <thead>
+                <th>Produit</th>
+                <th class="money-column">Prix unitaire</th>
+                <th>Quantité</th>
+                <th class="money-column">Sous-total</th>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th colspan="3">Total HT</th>
+                    <th><?=number_format($total, 2);?> €</th>
+                </tr>
+                <tr>
+                    <th colspan="3">Montant TVA</th>
+                    <th><?=number_format($total * 0.2, 2);?> €</th>
+                </tr>
+                <tr>
+                    <th colspan="3">Total TTC</th>
+                    <th><?=number_format($total * 1.2, 2);?> €</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <?php foreach ($orderdetails as $orderdetail): ?>
+                    <tr>
+                        <td><?= $orderdetail['productName']; ?></td>
+                        <td><?= number_format($orderdetail['priceEach'], 2); ?> €</td>
+                        <td><?= $orderdetail['quantityOrdered']; ?></td>
+                        <td><?= number_format($orderdetail['subtotal'], 2); ?> €</td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

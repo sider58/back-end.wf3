@@ -1,0 +1,22 @@
+<!-- Messages d'erreurs --> 
+<?php if (isset($errors) && !empty($errors)): ?>
+    <?php foreach ($errors as $error): ?>
+        <p class="alert alert-danger"><?=$error;?></p>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<!-- Formulaire de connexion : email et mot de passe --> 
+<form action="login.php" method="POST">
+    <fieldset>
+        <legend>Connexion</legend>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" class="form-control" id="password" name="password">
+        </div>
+    </fieldset>
+    <button type="submit" class="btn btn-primary mb-3">Valider</button>
+</form>

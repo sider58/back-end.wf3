@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rechercher un client</title>
+    <link rel="stylesheet" href="css/orders.css">
+</head>
+<body>
+    <header>
+        <h1>Rechercher un client</h1>
+    </header>
+    <main>
+        <form action="search-customer.php" method="get">
+            <fieldset>
+                <legend>Rechercher un client</legend>
+                <div>
+                    <label for="search-query">Nom du client</label>
+                    <!--input type="search" name="search-query" id="search-query" value="<?=isset($searchQuery)?$searchQuery:'';?>"-->
+                    <input type="search" name="search-query" id="search-query" value="<?=$searchQuery??'';?>">
+                </div>
+                <input type="submit" value="Rechercher">
+            </fieldset>
+        </form>
+
+        <?php if (isset($customers)): ?>
+            <section>
+                <h2>Résultats de recherche</h2>
+                <?php if (!empty($customers)): ?>
+                    <ul>
+                        <?php foreach ($customers as $customer): ?>
+                            <li>
+                                <a href="customer-details.php?customerNumber=<?=$customer['customerNumber'];?>">
+                                    <?=$customer['customerName'];?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p>Aucun résultat pour cette recherche.</p>
+                <?php endif; ?>    
+            </section>
+        <?php endif; ?>
+    </main>
+</body>
+</html>

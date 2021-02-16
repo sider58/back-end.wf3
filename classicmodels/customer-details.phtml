@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche client</title>
+    <link rel="stylesheet" href="css/orders.css">
+</head>
+<body>
+    <header>
+        <h1>Fiche client</h1>
+    </header>
+    <main>
+        <article>
+            <h2><?=$customer['customerName'];?></h2>
+            <h3><?=$customer['contactFirstName'];?> <?=$customer['contactLastName'];?></h3>
+            <p><?=$customer['addressLine1'];?></p>
+            <p><?=$customer['addressLine2'];?></p>
+            <p><?=$customer['postalCode'];?> <?=$customer['city'];?></p>
+            <p><?=$customer['country'];?></p>
+            <p><?=$customer['phone'];?></p>
+
+            <section>
+                <h2>Liste des commandes</h2>
+                <?php if (empty($orders)): ?>
+                    <p>Aucune commande associée à ce client.</p>
+                <?php else: ?>
+                    <ul>
+                        <?php foreach ($orders as $order): ?>
+                            <li>
+                                <a href="order-details.php?orderNumber=<?=$order['orderNumber'];?>">
+                                Commande n°<?=$order['orderNumber'];?> passée le <?=$order['orderDate'];?>
+                                </a> 
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </section>
+        </article>
+    </main>
+</body>
+</html>

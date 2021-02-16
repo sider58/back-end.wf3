@@ -1,0 +1,64 @@
+Base de données
+---------------
+
+/**********/
+  products
+/**********/
+
+* id (clé primaire) INT INDEX PRIMARY A.I.
+* name VARCHAR 100
+* description TEXT
+* picture VARCHAR 100
+* price DOUBLE
+* stock SMALL INT  
+* category_id INT INDEX INDEX
+* creator_id INT INDEX INDEX
+
+/************/
+  categories
+/************/
+
+* id (clé primaire) INT INDEX PRIMARY A.I.
+* label VARCHAR 100
+
+/**********/
+  creators
+/**********/
+
+* id (clé primaire) INT INDEX PRIMARY A.I.
+* shop_name (nom de la boutique) VARCHAR 100
+
+-------------------------------------------
+
+* presentation
+* picture
+* user_id (clé étrangère)
+
+/**********/
+   users
+/**********/
+
+* id (clé primaire)
+* email
+* password 
+* firstname
+* lastname
+
+
+
+* role (admin, creator, customer)
+
+/********************/
+   r_products_users
+/********************/
+
+* product_id
+* user_id
+
+/**********/
+  pictures
+/**********/
+
+* id (clé primaire)
+* filename (nom du fichier image)
+* product_id (clé étrangère)

@@ -1,0 +1,32 @@
+<!-- Dashboard admin --> 
+
+
+<!-- Lien vers le formulaire de création de produit -->
+<a href="admin_add_product.php" class="btn btn-primary mb-3"><i class="far fa-plus-square"></i> Ajouter un produit</a>
+
+<!-- Liste des produits (id, nom, créateur, catégorie, modification, suppression)--> 
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#id</th>
+      <th scope="col">Nom du produit</th>
+      <th scope="col">Boutique Créateur</th>
+      <th scope="col">Catégorie</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($products as $product): ?>
+        <tr>
+            <th scope="row"><?=$product['product_id'];?></th>
+            <td><?=$product['name'];?></td>
+            <td><?=$product['shop_name'];?></td>
+            <td><?=$product['label'];?></td>
+            <td>
+                <a href="admin_edit_product.php?id=<?=$product['product_id'];?>" title="Modifier"><i class="far fa-edit"></i></a>
+                <a href="admin_remove_product.php?id=<?=$product['product_id'];?>" title="Supprimer"><i class="far fa-trash-alt"></i></a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>
