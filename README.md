@@ -1,2 +1,2 @@
 # back-end.wf3
-Exercices pratiqués dans le cadre de ma formation chez WebForce3, fin 2020 - début 2021
+Mes premiers pas en exerçant sur php dans le cadre de ma formation chez WebForce3, fin 2020 - début 2021
